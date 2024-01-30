@@ -54,9 +54,9 @@ export default function Page() {
       <div className={style["character-body"]}>
         {data && (
           <div className={style["personal-infos"]}>
-            <PGroup title={data.debut.appearsIn} desc="Aparece em" />
-            <PGroup title={data.personal.clan} desc="Clã" />
-            <PGroup title={data.personal.birthdate} desc="Aniversário" />
+            <PGroup title={data?.debut?.appearsIn} desc="Aparece em" />
+            <PGroup title={data?.personal?.clan} desc="Clã" />
+            <PGroup title={data?.personal?.birthdate} desc="Aniversário" />
           </div>
         )}
         <hr />
@@ -65,15 +65,18 @@ export default function Page() {
           <div className={style["personal-infos-group"]}>
             <PersonalInfosGroup
               title="Kekkei Genkai"
-              data={data.personal.kekkeiGenkai}
+              data={data?.personal?.kekkeiGenkai}
             />
 
             <PersonalInfosGroup
               title="Clasificação"
-              data={data.personal.classification}
+              data={data?.personal?.classification}
             />
-            <PersonalInfosGroup title="Tipos naturais" data={data.natureType} />
-            <PersonalInfosGroup title="Ferramentas" data={data.tools} />
+            <PersonalInfosGroup
+              title="Tipos naturais"
+              data={data?.natureType}
+            />
+            <PersonalInfosGroup title="Ferramentas" data={data?.tools} />
           </div>
         )}
       </div>
