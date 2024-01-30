@@ -1,4 +1,5 @@
 "use client";
+"use client";
 import useData from "@/hooks/useData";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,10 +16,19 @@ interface PersonalInfosGroupProps {
 function PersonalInfosGroup({ data, title }: PersonalInfosGroupProps) {
   return (
     <div>
-      <h3 className={style["title-personal-infos-group"]}>{title}</h3>
-      <ul className={style["list-personal-infos-group"]}>
-        {data && data.map((item) => <li key={item}>{item}</li>)}
-      </ul>
+      {
+        <>
+          {console.log(data)}
+          <h3 className={style["title-personal-infos-group"]}>{title}</h3>
+          <ul className={style["list-personal-infos-group"]}>
+            {Array.isArray(data) ? (
+              data?.map((item) => <li key={item}>{item}</li>)
+            ) : (
+              <h3>Nenhuma informação</h3>
+            )}
+          </ul>
+        </>
+      }
     </div>
   );
 }
@@ -26,7 +36,7 @@ function PersonalInfosGroup({ data, title }: PersonalInfosGroupProps) {
 export default function Page() {
   const { id } = useParams();
   const { getOneById } = useData();
-  const [data, setData] = useState<CharacterType | null>(null);
+  const [data, setData] = useState<CharacterType>();
 
   useEffect(() => {
     async function fetch() {
@@ -37,52 +47,50 @@ export default function Page() {
     fetch();
   }, []);
 
-  {
-    console.log(data);
-  }
-
   return (
     <main className={`${style["character-page"]} container`}>
-      {data && <h1 className={style["name-character"]}>{data.name}</h1>}
+      {data && (
+        <>
+          <h1 className={style["name-character"]}>{data.name}</h1>
 
-      <div className={style["gallery"]}>
-        {data &&
-          data.images?.map((image) => (
-            <img key={image} src={image} alt={`imagem de ${data.name}`} />
-          ))}
-      </div>
-      <div className={style["character-body"]}>
-        {data && (
-          <div className={style["personal-infos"]}>
-            <PGroup title={data?.debut?.appearsIn} desc="Aparece em" />
-            <PGroup title={data?.personal?.clan} desc="Clã" />
-            <PGroup title={data?.personal?.birthdate} desc="Aniversário" />
+          <div className={style["gallery"]}>
+            {data &&
+              data.images?.map((image) => (
+                <img key={image} src={image} alt={`imagem de ${data.name}`} />
+              ))}
           </div>
-        )}
-        <hr />
+          <div className={style["character-body"]}>
+            <div className={style["personal-infos"]}>
+              <PGroup title={data?.debut?.appearsIn} desc="Aparece em" />
+              <PGroup title={data?.personal?.clan} desc="Clã" />
+              <PGroup title={data?.personal?.birthdate} desc="Aniversário" />
+            </div>
 
-        {data && (
-          <div className={style["personal-infos-group"]}>
-            <PersonalInfosGroup
-              title="Kekkei Genkai"
-              data={data?.personal?.kekkeiGenkai}
-            />
+            <hr />
+            {data && (
+              <div className={style["personal-infos-group"]}>
+                <PersonalInfosGroup
+                  title="Kekkei Genkai"
+                  data={data?.personal?.kekkeiGenkai}
+                />
 
-            <PersonalInfosGroup
-              title="Clasificação"
-              data={data?.personal?.classification}
-            />
-            <PersonalInfosGroup
-              title="Tipos naturais"
-              data={data?.natureType}
-            />
-            <PersonalInfosGroup title="Ferramentas" data={data?.tools} />
+                <PersonalInfosGroup
+                  title="Clasificação"
+                  data={data?.personal?.classification}
+                />
+                <PersonalInfosGroup
+                  title="Tipos naturais"
+                  data={data?.natureType}
+                />
+                <PersonalInfosGroup title="Ferramentas" data={data?.tools} />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <Link href={"/"} className={style["btn-back"]}>
-        Voltar
-      </Link>
+          <Link href={"/"} className={style["btn-back"]}>
+            Voltar
+          </Link>
+        </>
+      )}
     </main>
   );
 }
