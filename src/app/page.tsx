@@ -36,7 +36,6 @@ export default function Home() {
     }
     fetch();
   }, []);
-  console.log(data);
 
   return (
     <main className={`${styles["custom-main-home"]} `}>
@@ -46,15 +45,16 @@ export default function Home() {
       >
         <h1 className="title-section">Personagens</h1>
         <div className={`${styles["characters-container"]}`}>
-          {data.map((item) => (
-            <Card
-              key={item.id}
-              images={item.images}
-              name={item.name}
-              personal={item.personal}
-              id={item.id}
-            />
-          ))}
+          {data &&
+            data.map((item) => (
+              <Card
+                key={item.id}
+                images={item.images}
+                name={item.name}
+                personal={item.personal}
+                id={item.id}
+              />
+            ))}
         </div>
       </section>
     </main>
