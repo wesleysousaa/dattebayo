@@ -1,0 +1,19 @@
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+}
+
+.header-title-vibrant {
+  text-decoration: underline solid #ff7300;
+}
+
+.header-ul {
+  display: flex;
+  gap: 1rem;
+}
+
+.header-li {
+  list-style: none;
+  font-weight: bold;
+}

@@ -1,0 +1,62 @@
+.character-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.character-body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.personal-infos-group {
+  display: flex;
+  flex-direction: row;
+  max-width: 800px;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title-personal-infos-group {
+  color: #ff7300;
+}
+
+.list-personal-infos-group {
+  list-style: none;
+}
+
+.personal-infos {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.name-character {
+  color: #ff7300;
+}
+
+.btn-back {
+  color: #ff7300;
+  border: solid 1px #ff7300;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: large;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  background-color: #ff7300;
+  color: white;
+}

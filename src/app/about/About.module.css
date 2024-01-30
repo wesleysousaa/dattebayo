@@ -1,0 +1,23 @@
+.description-about {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-section {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.image-about {
+  max-width: 500px;
+}
+
+.link-api {
+  margin-top: 1rem;
+  color: #ff7300;
+  text-decoration: underline;
+}
