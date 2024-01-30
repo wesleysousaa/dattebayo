@@ -27,8 +27,8 @@ export default function Header() {
           </li>
           <li className={style["header-li"]}>
             <a
-              href={"/about"}
-              className={`${pathname === "/about" ? "active" : ""}`}
+              href={"https://github.com/wesleysousaa/dattebayo"}
+              target="_blank"
             >
               <img
                 src="github.png"
